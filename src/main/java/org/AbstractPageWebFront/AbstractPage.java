@@ -6,9 +6,11 @@ import java.io.IOException;
 
 import java.util.Properties;
 
-
+import org.PersonalInfoPage.HomePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -106,6 +108,11 @@ public class AbstractPage {
 		
 		
 		
+	}
+	public void scrollToElement(By element) {
+		WebElement l = driver.findElement(element);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", l);
+	
 	}
 	@AfterClass
 	public void closeBrowser() {

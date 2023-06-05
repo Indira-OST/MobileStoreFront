@@ -55,4 +55,5 @@ public class HomeTest extends AbstractPage {
 		.verifyBrandStore()
 		.verifyRecentlyPurchasedItem();
 	}
+	
 }

@@ -6,13 +6,13 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="org.PersonalInfoTest.HomeTest">
+      <class name="org.PersonalInfoTest.ProductViewTest">
         <methods>
           <include name="launchBrowserone"/>
           <include name="closeBrowser"/>
-          <include name="verifyMoreDeals"/>
+          <include name="verifySignUpPage"/>
         </methods>
-      </class> <!-- org.PersonalInfoTest.HomeTest -->
+      </class> <!-- org.PersonalInfoTest.ProductViewTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

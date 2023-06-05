@@ -77,6 +77,12 @@ public class HomePage extends AbstractPage {
 	private static final By recPurItemTxt=By.xpath("//h2[text()='Recently purchased items ']");
 	private static final By organicFromSweTxt=By.xpath("(//h6[text()='Capsicum green - Organic from sweden'])[4]");
 	
+	private static final By prodShopArrow=By.xpath("(//span[@class='ng-star-inserted'])[2]");
+	private static final By prodFreshArrow=By.xpath("(//span[@class='ng-star-inserted'])[3]");
+	private static final By prodVegArrow=By.xpath("(//span[@class='ng-star-inserted'])[4]");
+	private static final By prod20PerTxt= By.xpath("(//span[text()='20% OFF'])[1]");
+	private static final By prod20Per2Txt= By.xpath("(//span[text()='20% OFF'])[2]");
+	private static final By prodSwipeBnt=By.xpath("//div[@class='owl-dot ng-star-inserted']");	
 
 	
 	
@@ -100,11 +106,11 @@ public class HomePage extends AbstractPage {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1000));
 
 	}
-	public HomePage scrollToElement(By element) {
-		WebElement l = driver.findElement(element);
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", l);
-	return this;
-	}
+//	public HomePage scrollToElement(By element) {
+//		WebElement l = driver.findElement(element);
+//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", l);
+//	return this;
+//	}
 	public HomePage verifyHeader () {
 		element_isDisplayed(homePageMegaMartLogo);
 		element_isDisplayed(hpSearchProd);
@@ -118,7 +124,7 @@ public class HomePage extends AbstractPage {
 		element_isDisplayed(hpProfIcon);
 		
 		
-		ExtentTestManager.getTest().log(Status.INFO, "Entered username successfully");
+		ExtentTestManager.getTest().log(Status.INFO, "Verified header section successfully");
 		return this;
 	}
 	
@@ -154,7 +160,8 @@ public class HomePage extends AbstractPage {
 		click_btn(homePageMegaMartLogo);
 		click_btn(bannerLeftArrow);
 		click_btn(bannerRightArrow);
-		
+		ExtentTestManager.getTest().log(Status.INFO, "Verified cart section successfully");
+
 		return this;
 		
 	}
@@ -167,6 +174,8 @@ public class HomePage extends AbstractPage {
 		click_btn(offer50Percent);
 		getElementText(offerCatTxt, "CATEGORY");
 		click_btn(homePageMegaMartLogo);
+		ExtentTestManager.getTest().log(Status.INFO, "Offer Banner section successfully");
+
 		return this;
 	}
 	public HomePage verifyThisWeekOffer() {
@@ -181,6 +190,8 @@ public class HomePage extends AbstractPage {
 		getElementText(weekOfferNewAmt, "123.89");
 		getElementText(OneQARtxt, "QAR");
 		getElementText(oneAddTxt, "Add");
+		ExtentTestManager.getTest().log(Status.INFO, "This week offer section successfully");
+
 		return this;
 
 	}
@@ -195,7 +206,8 @@ public class HomePage extends AbstractPage {
 		scrollToElement(showingProdPagination);
 		getElementText(showingProdPagination, "Showing Products 12 of 36 Result");
 		click_btn(homePageMegaMartLogo);
-		
+		ExtentTestManager.getTest().log(Status.INFO, "This week offer Explore all section successfully");
+
 		return this;
 		
 		
@@ -225,6 +237,8 @@ public class HomePage extends AbstractPage {
 //			Assert.assertEquals(catproductsTxt, "Munchies");		
 		}
 		getElementText(catExploreAll, "Explore all");
+		ExtentTestManager.getTest().log(Status.INFO, "Verified Categories section successfully");
+
 		return this;
 		
 	}
@@ -241,6 +255,8 @@ public class HomePage extends AbstractPage {
 			String catproductsTxt=col.getText();
 			System.out.println("the categories products"+catproductsTxt);
 		}
+		ExtentTestManager.getTest().log(Status.INFO, "Verified Categories section Expore all successfully");
+
 		return this;
 	}
 	
@@ -256,6 +272,8 @@ public class HomePage extends AbstractPage {
 		click_btn(moreDealsSubTitle);
 		Thread.sleep(5000);
 		click_btn(homePageMegaMartLogo);
+		ExtentTestManager.getTest().log(Status.INFO, "Verified More Deals for you section successfully");
+
 		return this;
 
 	}
@@ -267,6 +285,8 @@ public class HomePage extends AbstractPage {
 		element_isDisplayed(brandStoreLogo);
 		element_isDisplayed(brandStoreProdImg);
 		getElementText(brandStoreExpBtn, "Explore");
+		ExtentTestManager.getTest().log(Status.INFO, "Verified Brand store section successfully");
+
 		return this;
 		
 		
@@ -283,6 +303,8 @@ public class HomePage extends AbstractPage {
 		click_btn(threeLayerOnion);
 		getElementText(tomatoProdNameTxt, "FRESH TOMATO");
 		click_btn(homePageMegaMartLogo);
+		ExtentTestManager.getTest().log(Status.INFO, "Verified three layers category section successfully");
+
 		return this;
 			
 	}
@@ -292,26 +314,33 @@ public class HomePage extends AbstractPage {
 		getElementText(organicFromSweTxt, "Capsicum green - Organic from sweden");
 		getElementText(recPurItemTxt, "Recently purchased items");
 		getElementText(organicFromSweTxt, "Capsicum green - Organic from sweden");
-		
+		ExtentTestManager.getTest().log(Status.INFO, "Verified Recently purchased section successfully");
+
 		return this;
-		
-		
-		
+
 	}
 	
+	public HomePage verifyProductDetailsPage() throws InterruptedException {
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		verifyHeader();
+		scrollToElement(thisWeekOfferTxt);
+		getElementText(onionImgTxt, "Onion local from southasian countries");
+		Thread.sleep(2000);
+		click_btn(onionImgTxt);
+		getElementText(homeTxt, "Home");
+		getElementText(tomatoProdNameTxt, "FRESH TOMATO");
+		Thread.sleep(2000);
 
+		element_isDisplayed(prodFreshArrow);
+		element_isDisplayed(prodShopArrow);
+		element_isDisplayed(prodVegArrow);
+		getElementText(prod20PerTxt, "20% OFF");
+		click_btn(prod20Per2Txt);
+		getElementText(weekOfferWasTxt, "was");
+		getElementText(weekOfferStrikeAmt, "8.55");
+		getElementText(weekOfferNewAmt, "6.05");
+		getElementText(OneQARtxt, "QAR");
+		return this;
+
+}
 }
