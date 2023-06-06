@@ -113,8 +113,21 @@ public class ProductViewPage extends AbstractPage {
 	private static final By createPswdTxt = By.xpath("//h3[text()='Create new password!']");
 	private static final By savePswdTxt = By.xpath("//button[@class='btn gradient-btn btn-block login-btn']");
 	private static final By pswdReqTxt = By.xpath("(//div[@class='ng-star-inserted'])[1]");
+	private static final By enterPswdField = By.xpath("//input[@placeholder='password']");
+	private static final By enterConfrmPswdField = By.xpath("//input[@placeholder='confirmpassword']");
 	private static final By enterPswd = By.xpath("//input[@placeholder='Password']");
 	private static final By enterConfPswd = By.xpath("//input[@placeholder='Confirm password']");
+	private static final By createAnAccTxt =  By.xpath("//h3[text()='Create an account!']");
+	private static final By EnterSignUPFName = By.xpath("//input[@placeholder='First name']");
+	private static final By EnterSignUPLName = By.xpath("//input[@placeholder='Last name']");
+	private static final By EnterLocation = By.xpath("//input[@formcontrolname='location']");
+	private static final By tapSignUpChkBx = By.xpath("//div[@class='form-group checkbox']/input");
+	private static final By tapSignUpTxt = By.xpath("//div[@class='form-group checkbox']/label");
+	private static final By signUpButton = By.xpath("//button[@class='btn gradient-btn btn-block login-btn signup']/span");
+	private static final By alreadyHaveAccountTxt = By.xpath("//button[@type='submit']/following-sibling::div[1]");
+	private static final By signInBtn = By.xpath("//button[@class='btn gradient-btn-o btn-block login-btn']");
+	
+	
 	
 	
 			
@@ -308,7 +321,7 @@ public class ProductViewPage extends AbstractPage {
 		return this;
 		
 	}
-	public ProductViewPage verifySignUpPage() throws InterruptedException {
+	public ProductViewPage verifyLoginPage() throws InterruptedException {
 
 		driver.navigate().back();
 		Thread.sleep(5000);
@@ -346,10 +359,13 @@ public class ProductViewPage extends AbstractPage {
 		
 	}
 	
-	public ProductViewPage verifyForgotPswd() {
+	public ProductViewPage verifyForgotPswd() throws InterruptedException {
 	
 		element_isDisplayed(profLefImg);
+		scrollToElement(forgotPswd);
+		Thread.sleep(2000);
 		click_btn(forgotPswd);
+		Thread.sleep(15000);
 		getElementText(forgotPswdPageTxt, "Forgot password?");
 		getElementText(enterMobNumbTxt, "Enter the mobile number linked with your account!");
 		element_isDisplayed(flagImg);
@@ -388,10 +404,11 @@ public class ProductViewPage extends AbstractPage {
 		click_btn(savePswdTxt);
 		Thread.sleep(2000);
 		getElementText(pswdReqTxt, "Password is required");
-		send_keys(enterPswd, "Password@1234");
-		send_keys(enterConfPswd, "password");
+		Thread.sleep(2000);
+		send_keys(enterPswdField, "Password@1234");
+		send_keys(enterConfrmPswdField, "password");
 		click_btn(savePswdTxt);
-		send_keys(enterConfPswd, "Password@1234");
+		send_keys(enterConfrmPswdField, "Password@1234");
 		click_btn(savePswdTxt);
 		ExtentTestManager.getTest().log(Status.INFO, "Verified Saved password successfully");
 		return this;
@@ -400,6 +417,56 @@ public class ProductViewPage extends AbstractPage {
 		
 		
 	}
+	
+	public ProductViewPage verifySignUpPage() throws InterruptedException {
+
+		click_btn(hpProfIcon);
+		scrollToElement(signUpBtn);
+		Thread.sleep(2000);
+		click_btn(signUpBtn);
+		element_isDisplayed(profLefImg);
+		getElementText(createAnAccTxt, "Create an account!");
+		send_keys(EnterSignUPFName, "Testing");
+		send_keys(EnterSignUPLName, "test");
+		element_isDisplayed(flagImg);
+		send_keys(enterMobNum, "123456789");
+		send_keys(EnterLocation, "Chennai");
+		send_keys(enterPswdField, "Password@1234");
+		send_keys(enterConfrmPswdField, "Password@1234");
+		click_btn(tapSignUpChkBx);
+		//getElementText(tapSignUpTxt, " By tapping “Sign up” you accept all Megamart polices.");
+		getElementText(signUpButton, "Sign up");
+		click_btn(signUpButton);
+		getElementText(alreadyHaveAccountTxt, "Already have an account?");
+		getElementText(signInBtn, "Sign in");
+		click_btn(signInBtn);
+		return this;
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -36,10 +36,12 @@ public class ProductViewTest extends AbstractPage {
 	@Test(priority = 4)
 		public void verifySignUpPage() throws InterruptedException {
 		new ProductViewPage(driver)
-		.verifySignUpPage()
+		.verifyLoginPage()
 		.verifyForgotPswd()
 		.verifyOtp()
-		.verifyCreateNewPswd();
+		.verifyCreateNewPswd()
+		.verifySignUpPage();
+	
 		
 			
 		}
